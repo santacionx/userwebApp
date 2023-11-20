@@ -1,0 +1,84 @@
+<%- include("includes/head.ejs")%>
+<body class="bg-gray-100 font-sans">
+    <div class="max-w-3xl mx-auto p-6 overflow-x-auto">
+        <h1 class="text-3xl mb-6 font-semibold text-center text-blue-500">Users</h1>
+        <div class="fixed top-4 right-4">
+            <button class="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-bold py-2 px-4 rounded-md">
+                <a href="http://localhost:3000">Home</a>
+            </button>
+        </div>
+        <div class="fixed top-0 left-0 p-4">
+            <button class="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-bold py-2 px-4 rounded-md">
+                <a href="http://localhost:3000/user/new">Join Us Today</a>
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table class="min-w-full bg-white shadow-md rounded-md">
+                <thead class="bg-gradient-to-r from-pink-500 to-purple-500 text-white">
+                    <tr>
+                        <th class="sticky top-0 py-3 px-4 uppercase font-semibold">ID</th>
+                        <th class="sticky top-0 py-3 px-4 uppercase font-semibold">Username</th>
+                        <th class="sticky top-0 py-3 px-4 uppercase font-semibold">Email</th>
+                        <th class="sticky top-0 py-3 px-4 uppercase font-semibold">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let user of result) { %>
+                        <tr class="group hover:bg-gray-200 transition-colors duration-300">
+                            <td class="py-3 px-4 relative">
+                                <span class="tooltip">
+                                    <%= user.id %>
+                                    <span class="tooltiptext"><%= user.id %></span>
+                                </span>
+                            </td>
+                            <td class="py-3 px-4"><%= user.username %></td>
+                            <td class="py-3 px-4"><%= user.email %></td>
+                            <td class="py-3 px-4">
+                                <span>
+                                    <form action="/user/<%= user.id %>/edit" method="get">
+                                        <button class="bg-gradient-to-r from-blue-400 to-green-400 hover:from-blue-500 hover:to-green-500 text-white font-bold py-1 px-2 rounded-md transition-colors duration-300 group-hover:text-white">Edit</button>
+                                    </form>
+                                    &nbsp;
+                                    &nbsp;
+                                    <form action="/user/<%= user.id %>?_method=DELETE" method="post">  
+                                        <button class="bg-gradient-to-r from-red-400 to-yellow-400 hover:from-red-500 hover:to-yellow-500 text-white font-bold py-1 px-2 rounded-md transition-colors duration-300 group-hover:text-white">Delete</button>
+                                    </form>
+                                </span>
+                                
+                            </td>
+                        </tr>
+                    <% } %> <!-- This closing tag is for the for loop -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <style>
+        /* Tooltip style - Use your existing tooltip styles */
+        /* Scrollable table styles - Use your existing table-container styles */
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .fixed {
+            position: fixed;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<%- include("includes/head.ejs")%>
+<body class="bg-gradient-to-br from-pink-500 to-purple-500 flex justify-center items-center h-screen">
+    <div class="bg-white rounded-lg shadow-xl p-8 max-w-md w-full">
+        <h1 class="text-3xl mb-4 font-semibold text-center text-pink-500">Edit</h1>
+        <h2 class="text-lg mb-4 text-center text-blue-500"><%= user.email %></h2>
+        <form action="/user/<%= user.id %>?_method=PATCH" method="POST" class="flex flex-col items-center">
+            <textarea name="username" cols="30" rows="5" class="w-full bg-gray-100 rounded-lg py-3 px-4 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"><%= user.username %></textarea>
+            <input type="password" name="password" placeholder="Enter password" class="w-full bg-gray-100 rounded-lg py-3 px-4 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button class="w-full bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 transition duration-300">Save</button>
+        </form>
+        <a href="http://localhost:3000/user" class="block mt-4 text-center text-blue-500 hover:underline">Back</a>
+    </div>
+ 
+</body>
+</html>
